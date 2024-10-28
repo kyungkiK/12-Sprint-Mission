@@ -1,9 +1,3 @@
-/* ROKAF Sans 폰트 */
-@font-face {
-  font-family: 'ROKAF Sans';
-  src: url(/sprint_mission/12-Sprint-Mission/fonts/ROKAF_SANS_MEDIUM.ttf) format('truetype');
-}
-
 :root {
   --blue: #3692FF;
   --gray900: #111827;
@@ -18,13 +12,9 @@
 }
 
 /* SIGNUP CSS FILE */
-body {
-  margin: 0;
-  font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
-}
 
 /* flex 지정 */
-.container nav, .logo, .signupForm, .otherLogin, .site {
+.container .signup-nav, .logo, .signupForm, .otherLogin, .site {
   display: flex;
 }
 
@@ -32,7 +22,7 @@ body {
   padding: 231px 640px;
 }
 
-.container nav {
+.container .signup-nav {
   gap: 40px;
   box-sizing: border-box;
   flex-direction: column;
@@ -92,11 +82,11 @@ body {
   outline: 1px solid var(--blue);
 }
 
-#submit {
+#button {
   height: 56px;
   font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
   border-radius: 40px;
-  padding: 16px 285px;
+  padding: 16px auto;
   width: 100%;
   border: 0;
   background-color: var(--gray400);
@@ -161,7 +151,6 @@ body {
 }
 
 /* 로그인 페이지 이동 */
-
 .loginPage {
   text-align: center;
   font-size: 14px;
