@@ -8,4 +8,5 @@
 
 # 수정 사항 반영
 
+- 코드 리뷰 수정 사항 반영 및 누락 코드 반영
 - 배포 링크 : https://fe-12-kimkyungki.netlify.app/
