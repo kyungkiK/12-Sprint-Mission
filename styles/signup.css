@@ -12,6 +12,12 @@
 }
 
 /* SIGNUP CSS FILE */
+body {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
 
 /* flex 지정 */
 .container .signup-nav, .logo, .signupForm, .otherLogin, .site {
@@ -19,7 +25,10 @@
 }
 
 .container {
-  padding: 231px 640px;
+  width: 640px;
+  height: 842px;
+  padding-top: 48px;
+  padding-bottom: 145px;
 }
 
 .container .signup-nav {
@@ -95,15 +104,27 @@
   line-height: 24px;
   font-weight: 600;
   cursor: pointer;
-  /*cursor: not-allowed;*/
 }
 
-/* 로그인 버튼 이벤트 리스너 부분 (스크립트 작성시 사용)
-#submit.active {
-  background-color: var(--blue);
-  cursor: pointer;
+.button[disabled] {
+  background-color: #ccc;
+  cursor: not-allowed;
 }
-*/
+
+input.error {
+  border: 1px solid red;
+}
+
+input.valid {
+  outline: 1px solid var(--blue);
+}
+
+.error-message {
+  color: red;
+  font-size: 14px;
+  padding-left: 16px;
+  font-weight: 600;
+}
 
 .emailInput, .passwordInput, .nicknameInput, .pwCheckInput {
   display: flex;
@@ -156,8 +177,57 @@
   font-size: 14px;
   font-weight: 500;
   color: var(--gray800);
+  margin: 0;
 }
 
 .loginPage a {
   color: var(--blue);
+}
+
+/* moblie */
+@media screen and (max-width: 767px) {
+  .container {
+    padding-top: 24px;
+    width: calc(100% - 32px);
+    max-width: 400px;
+    height: 681px;
+  }
+
+  .container .signup-nav {
+    gap: 24px;
+  }
+  
+  /* 상단 로고 */
+  .logo {
+    gap: 11px;
+  }
+
+  .logoTitle a {
+    font-size: 33px;
+    line-height: 44px;
+  }
+
+  .logo > img {
+    width: 51px;
+    height: 51px;
+  }
+
+  .signupForm label {
+    font-size: 14px;
+    line-height: 24px;
+  }
+
+  .emailInput, .passwordInput, .nicknameInput, .pwCheckInput {
+    gap: 8px;
+    padding-bottom: 16px;
+  }
+
+  .passwordInput i, .pwCheckInput i {
+    position: absolute;
+    margin: 0;
+    top: 48px;
+    right: 24px;
+    font-size: 24px;
+    cursor: pointer;
+  }
 }
