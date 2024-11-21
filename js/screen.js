@@ -15,9 +15,12 @@ function addLineBreakIfNeeded() {
     }
   } else {
     // 화면이 커지면 <br> 태그 제거
-    document.getElementById("hotItemText").innerHTML = "인기 상품을 확인해 보세요";
-    document.getElementById("searchText").innerHTML = "구매를 원하는 상품을 검색하세요";
-    document.getElementById("registerText").innerHTML = "판매를 원하는 상품을 등록하세요";
+    document.getElementById("hotItemText").innerHTML =
+      "인기 상품을 확인해 보세요";
+    document.getElementById("searchText").innerHTML =
+      "구매를 원하는 상품을 검색하세요";
+    document.getElementById("registerText").innerHTML =
+      "판매를 원하는 상품을 등록하세요";
   }
 }
 
@@ -34,11 +37,11 @@ function moveCopyRight() {
 }
 
 // header-bar 로고 변수 선언 moblie
-const logoImg = document.querySelector(".logoImg");
+const logoImg = document.querySelector(".logo-Img");
 const logoDiv = document.querySelector(".logo");
 
 function correctionLogo() {
-  if(window.innerWidth < 768) {
+  if (window.innerWidth < 768) {
     logoImg.remove();
   } else {
     logoDiv.insertBefore(logoImg, logoDiv.firstChild);
@@ -46,7 +49,7 @@ function correctionLogo() {
 }
 
 // 페이지 로드 시와 창 크기 변경 시 함수 실행
-["load", "resize"].forEach(event => {
+["load", "resize"].forEach((event) => {
   window.addEventListener(event, addLineBreakIfNeeded);
   window.addEventListener(event, moveCopyRight);
   window.addEventListener(event, correctionLogo);
