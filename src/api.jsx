@@ -5,16 +5,26 @@ export async function getProducts({
   keyword = "",
   totalItems,
 }) {
-  const params = new URLSearchParams({ page, pageSize, keyword, totalItems });
+  const params = new URLSearchParams({
+    page,
+    pageSize,
+    // keyword가 비어있지 않은 경우에만 추가
+    ...(keyword && { keyword }),
+  });
 
   // orderBy가 있을 때만 추가
   if (orderBy) {
     params.append("orderBy", orderBy);
   }
 
+  console.log(
+    "API URL: ",
+    `https://panda-market-api.vercel.app/products?${params.toString()}`
+  );
+
   try {
     const response = await fetch(
-      `https://panda-market-api.vercel.app/products?${params}`
+      `https://panda-market-api.vercel.app/products?${params.toString()}`
     );
 
     if (!response.ok) {

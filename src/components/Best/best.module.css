@@ -52,6 +52,14 @@ body {
   margin-bottom: 16px;
 }
 
+@media screen and (max-width: 1199px) {
+  .product-image-box {
+    width: 343px;
+    height: 343px;
+    margin-bottom: 16px;
+  }
+}
+
 .product-image {
   position: absolute;
   width: 100%;

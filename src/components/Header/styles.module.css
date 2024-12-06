@@ -49,7 +49,7 @@ header {
 
 .header-bar {
   margin: auto;
-  padding: 0 200px;
+  padding: 0 12.5rem;
   background-color: #ffffff;
   border: 1px solid #dfdfdf;
   width: 100%;
@@ -58,12 +58,21 @@ header {
 }
 
 .menu {
-  margin-left: 32px;
+  margin-left: 2rem;
 }
 
-.menuText {
+.menuText-default {
   font-weight: 700;
   color: var(--gray600);
+  font-size: 18px;
+  text-decoration: none;
+  padding: 21px 15px;
+  line-height: 26px;
+}
+
+.menuText-focus {
+  font-weight: 700;
+  color: var(--blue);
   font-size: 18px;
   text-decoration: none;
   padding: 21px 15px;
@@ -73,25 +82,29 @@ header {
 /* tablet */
 @media screen and (max-width: 1199px) {
   .header-bar {
-    padding: 0 24px;
+    padding: 0 1.5rem;
   }
 
   .menu {
-    margin-left: 20px;
+    margin-left: 1.5rem;
   }
 }
 
 /* mobile */
 @media screen and (max-width: 767px) and (min-width: 375px) {
   .header-bar {
-    padding: 0 16px;
+    padding: 0 1rem;
     min-width: 375px;
     max-width: 767px;
     margin: 0;
   }
 
   .menu {
-    margin-left: 8px;
+    margin-left: 0.2rem;
+  }
+
+  .menuText {
+    padding: 1.5rem 0.2rem;
   }
 }
 

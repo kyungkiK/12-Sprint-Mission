@@ -22,7 +22,6 @@ body {
 
 .all-Container {
   padding-top: 40px;
-  min-width: 1200px;
   min-height: 740px;
   display: flex;
   flex-direction: column;
@@ -30,10 +29,17 @@ body {
   flex-wrap: wrap;
 }
 
+@media screen and (max-width: 1199px) {
+  .all-Container {
+    padding-top: 100px;
+  }
+}
+
 .title {
   font-weight: 700;
   color: var(--gray900);
   font-size: 20px;
+  padding-right: 31rem;
 }
 
 .all-list {
@@ -46,6 +52,11 @@ body {
   list-style-type: none;
   min-height: 674px;
   gap: 24px;
+}
+
+.best-card {
+  width: 221px;
+  height: 317px;
 }
 
 @media screen and (max-width: 1199px) {
@@ -62,6 +73,11 @@ body {
       "a b"
       "c d";
   }
+
+  .item-card {
+    width: 168px;
+    height: 264px;
+  }
 }
 
 .product-image-box {
@@ -71,9 +87,17 @@ body {
   margin-bottom: 16px;
 }
 
+@media screen and (max-width: 767px) {
+  .product-image-box {
+    width: 168px;
+    height: 168px;
+  }
+}
+
 .product-image {
   position: absolute;
   width: 100%;
+  height: 100%;
 }
 
 .product-name {
@@ -115,25 +139,11 @@ body {
 }
 
 .all-Container-bar {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-
-.all-Container-bar-more {
   position: relative;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  gap: 12px;
-}
-
-.search-icon {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  width: 24px;
-  height: 24px;
+  align-items: center;
 }
 
 .search-input {
@@ -145,6 +155,18 @@ body {
   height: 24px;
   gap: 10px;
   background-color: var(--gray100);
+}
+
+.search-icon {
+  position: absolute;
+  top: 29%;
+  left: 48.5%;
+}
+
+@media screen and (max-width: 1199px) {
+  .search-input {
+    width: 178px;
+  }
 }
 
 .register-button {
@@ -187,8 +209,8 @@ body {
 
 .dropdown-list {
   position: absolute;
-  top: 75%;
-  left: 80%;
+  top: 88%;
+  left: 89%;
   background-color: #ffffff;
   border: 1px solid #e5e7eb;
   border-radius: 8px;
@@ -259,4 +281,58 @@ body {
   background-color: #f5f5f5;
   color: #ccc;
   cursor: not-allowed;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1199px) {
+  .title {
+    padding-right: 8rem;
+  }
+
+  .search-icon {
+    top: 28%;
+    left: 25%;
+  }
+
+  .dropdown-list {
+    top: 89%;
+    left: 81.5%;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .all-Container-bar {
+    flex-wrap: wrap;
+    padding-bottom: 16px;
+    align-items: center;
+    max-width: 375px;
+  }
+
+  .title {
+    padding: 0;
+    order: 0;
+    width: 35%;
+  }
+
+  .search-input {
+    order: 1;
+  }
+
+  .register-button {
+    order: 2;
+    width: 100%;
+  }
+
+  .dropdown-btn {
+    order: 3;
+  }
+
+  .search-icon {
+    top: 56%;
+    left: 2%;
+  }
+
+  .dropdown-list {
+    top: 89%;
+    left: 65%;
+  }
 }

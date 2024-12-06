@@ -1,4 +1,4 @@
-import styles from "./styles.module.css";
+import styles from "./best.module.css";
 import heartIcon from "../../assets/img/logo/heartIcon.svg";
 import { getProducts } from "../../api";
 import { useState, useEffect } from "react";
@@ -9,12 +9,12 @@ function Best() {
 
   function getPageSize(width) {
     //
-    if (width >= 1200) {
-      return 4;
-    } else if (width >= 768) {
+    if (width <= 767) {
+      return 1;
+    } else if (width <= 1199) {
       return 2;
     } else {
-      return 1;
+      return 4;
     }
   }
 

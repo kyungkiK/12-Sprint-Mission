@@ -1,5 +1,5 @@
 import Header from "components/Header/index";
-import styles from "./style.module.css";
+import styles from "./addItem.module.css";
 import testimg from "../../assets/img/landing/Img_add.svg";
 
 function AddItems() {

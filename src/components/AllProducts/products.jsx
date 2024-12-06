@@ -1,6 +1,6 @@
 import React from "react";
 import heartIcon from "../../assets/img/logo/heartIcon.svg";
-import styles from "./styles.module.css";
+import styles from "./allProduct.module.css";
 import EMPTY_IMAGE_URL from "../../assets/img/landing/Img_home_02.png";
 
 function ProductList({ products }) {
@@ -9,7 +9,7 @@ function ProductList({ products }) {
       {/* 상품 목록이 있을 경우, 상품 정보를 렌더링 */}
       {products.length > 0 ? (
         products.map((product) => (
-          <li key={product.id} className={styles["best-card"]}>
+          <li key={product.id} className={styles["item-card"]}>
             <div className={styles["product-image-box"]}>
               {/* 상품 이미지 */}
               <img
@@ -20,8 +20,6 @@ function ProductList({ products }) {
                     : EMPTY_IMAGE_URL
                 }
                 alt={product.name || "기본 이미지"}
-                width="221"
-                height="221"
               />
             </div>
             {/* 상품 이름 */}

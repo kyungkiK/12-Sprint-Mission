@@ -1,10 +1,15 @@
 import React, { useEffect, useState } from "react";
 import logoImg from "../../assets/img/logo/logo.png"; // 이미지 파일 경로
 import styles from "./styles.module.css"; // 스타일 파일 경로
-import { Link } from "react-router-dom"; // Link import
+import { Link, useLocation } from "react-router-dom"; // Link import
 
 function Logo() {
   const [isMobile, setIsMobile] = useState(false);
+  const location = useLocation(); // 현재 경로 가져오기
+
+  // 각 경로에 있을 때의 스타일을 조건부로 적용
+  const isItemsPage = location.pathname === "/items";
+  const isBoardPage = location.pathname === "/board";
 
   useEffect(() => {
     // 창 크기 변경에 따라 상태 업데이트
@@ -37,10 +42,20 @@ function Logo() {
         <Link to="/">판다마켓</Link>
       </h1>
       <div className={styles.menu}>
-        <Link to="/board" className={styles["menuText"]}>
+        <Link
+          to="/board"
+          className={
+            isItemsPage ? styles["menuText-default"] : styles["menuText-focus"]
+          }
+        >
           자유게시판
         </Link>
-        <Link to="/items" className={styles["menuText"]}>
+        <Link
+          to="/items"
+          className={
+            isBoardPage ? styles["menuText-default"] : styles["menuText-focus"]
+          }
+        >
           중고마켓
         </Link>
       </div>
