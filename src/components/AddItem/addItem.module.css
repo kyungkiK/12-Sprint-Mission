@@ -26,11 +26,16 @@ section {
   align-items: center;
   height: 100vh;
   /* 임시 여백 */
-  padding-top: 8rem; /* 16px * 8 */
+  padding-top: 12rem; /* 16px * 12 */
   padding-bottom: 8rem;
 }
 
+/* 상품 등록 전체 스타일 */
 .add-items {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
   min-width: 1200px;
 }
 
@@ -38,6 +43,7 @@ section {
   display: flex;
   flex-direction: column;
   gap: 32px;
+  width: 100%;
 }
 
 .product-img,
@@ -56,6 +62,7 @@ section {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 24px;
+  width: 100%;
 }
 
 .product-img {
@@ -81,7 +88,6 @@ section {
 }
 
 .add-items textarea {
-  box-sizing: border-box;
   font-family: Pretendard;
   width: 100%;
   padding: 16px 24px;
@@ -119,4 +125,86 @@ section {
 
 .product-add button:hover {
   background-color: #2873cc;
+}
+
+/* 상품 이미지 등록 */
+.image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 282px;
+  height: 282px;
+  border: 1px dashed var(--gray400);
+  border-radius: 4px;
+}
+
+.upload-label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.file-input {
+  display: none;
+}
+
+.upload-placeholder {
+  color: var(--gray400);
+  font-size: 16px;
+}
+
+.upload-placeholder-plus {
+  color: var(--gray400);
+  font-size: 68px;
+  text-align: center;
+}
+
+.image-preview {
+  position: relative;
+  width: 282px;
+  height: 282px;
+}
+
+.uploaded-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.delete-img-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: var(--gray400);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 태그 */
+.tag-item {
+  margin: 5px;
+  padding: 5px 10px;
+  background-color: #f0f0f0;
+  border-radius: 20px;
+  font-size: 14px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.delete-tag-btn {
+  background: var(--gray400);
+  border: none;
+  border-radius: 9999px;
+  color: white;
+  margin-left: 5px;
+  cursor: pointer;
 }

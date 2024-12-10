@@ -45,6 +45,10 @@ body {
   gap: 24px;
 }
 
+.product-link {
+  text-decoration: none;
+}
+
 .product-image-box {
   position: relative;
   width: 282px;

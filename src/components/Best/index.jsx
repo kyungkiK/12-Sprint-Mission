@@ -2,6 +2,7 @@ import styles from "./best.module.css";
 import heartIcon from "../../assets/img/logo/heartIcon.svg";
 import { getProducts } from "../../api";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 function Best() {
   const [products, setProducts] = useState([]);
@@ -53,27 +54,33 @@ function Best() {
         {products.length > 0 ? (
           products.map((product) => (
             <li key={product.id} className={styles["best-card"]}>
-              {product.images.length > 0 && (
-                <div className={styles["product-image-box"]}>
+              <Link
+                to={`/items/${product.id}`}
+                className={styles["product-link"]}
+              >
+                {product.images.length > 0 && (
+                  <div className={styles["product-image-box"]}>
+                    <img
+                      className={styles["product-image"]}
+                      src={product.images[0]}
+                      alt={product.name}
+                    />
+                  </div>
+                )}
+
+                <h3 className={styles["product-name"]}>{product.name}</h3>
+                <p className={styles["product-price"]}>{product.price}원</p>
+                <div className={styles["heart-line"]}>
                   <img
-                    className={styles["product-image"]}
-                    src={product.images[0]}
-                    alt={product.name}
-                  />
+                    className={styles["heart-image"]}
+                    src={heartIcon}
+                    alt="좋아요 하트 기호"
+                  ></img>
+                  <span className={styles["heart-num"]}>
+                    {product.favoriteCount}
+                  </span>
                 </div>
-              )}
-              <h3 className={styles["product-name"]}>{product.name}</h3>
-              <p className={styles["product-price"]}>{product.price}원</p>
-              <div className={styles["heart-line"]}>
-                <img
-                  className={styles["heart-image"]}
-                  src={heartIcon}
-                  alt="좋아요 하트 기호"
-                ></img>
-                <span className={styles["heart-num"]}>
-                  {product.favoriteCount}
-                </span>
-              </div>
+              </Link>
             </li>
           ))
         ) : (

@@ -10,6 +10,9 @@ function Logo() {
   // 각 경로에 있을 때의 스타일을 조건부로 적용
   const isItemsPage = location.pathname === "/items";
   const isBoardPage = location.pathname === "/board";
+  const isAddItemPage = location.pathname === "/additem";
+  const isMainPage = location.pathname === "/";
+  const isItemsDetailPage = location.pathname.startsWith("/items/");
 
   useEffect(() => {
     // 창 크기 변경에 따라 상태 업데이트
@@ -45,7 +48,9 @@ function Logo() {
         <Link
           to="/board"
           className={
-            isItemsPage ? styles["menuText-default"] : styles["menuText-focus"]
+            isItemsPage || isAddItemPage || isMainPage || isItemsDetailPage
+              ? styles["menuText-default"]
+              : styles["menuText-focus"]
           }
         >
           자유게시판
@@ -53,7 +58,9 @@ function Logo() {
         <Link
           to="/items"
           className={
-            isBoardPage ? styles["menuText-default"] : styles["menuText-focus"]
+            isBoardPage || isMainPage || isItemsDetailPage
+              ? styles["menuText-default"]
+              : styles["menuText-focus"]
           }
         >
           중고마켓

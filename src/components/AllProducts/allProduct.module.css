@@ -20,6 +20,11 @@ body {
     "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
 }
 
+.product-link {
+  text-decoration: none;
+  color: black;
+}
+
 .all-Container {
   padding-top: 40px;
   min-height: 740px;
@@ -290,7 +295,7 @@ body {
 
   .search-icon {
     top: 28%;
-    left: 25%;
+    left: 30%;
   }
 
   .dropdown-list {
