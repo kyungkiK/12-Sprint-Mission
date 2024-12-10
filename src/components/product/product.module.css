@@ -51,13 +51,13 @@ section {
   margin-bottom: 40px;
 }
 
-.imageSection img {
+.image_section img {
   width: 100%;
   min-height: 486px;
   object-fit: cover;
 }
 
-.detailsSection {
+.details_section {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -120,13 +120,13 @@ hr {
   border-radius: 26px;
 }
 
-.favoriteCount {
+.favorite_count {
   margin-top: 10px;
   font-size: 18px;
   color: red;
 }
 
-.commentSection {
+.comment_section {
   margin-top: 40px;
 }
 
@@ -136,7 +136,7 @@ hr {
   color: var(--gray900);
 }
 
-.commentSection textarea {
+.comment_section textarea {
   font-family: Pretendard;
   width: 100%;
   height: 80px;
@@ -153,7 +153,7 @@ hr {
   box-sizing: border-box; /* 패딩 포함 크기 계산 */
 }
 
-.submitButton {
+.submit_button {
   margin-top: 10px;
   background: #ccc;
   color: white;
@@ -163,12 +163,12 @@ hr {
   cursor: not-allowed;
 }
 
-.submitButton.active {
+.submit_button.active {
   background: #3692ff;
   cursor: pointer;
 }
 
-.commentList {
+.comment_list {
   margin-top: 20px;
   max-height: 16rem; /* 댓글 목록의 최대 높이 설정 */
   overflow-y: auto; /* 댓글 목록이 길어지면 스크롤 */
@@ -196,12 +196,12 @@ hr {
   font-size: 12px;
 }
 
-.backButton {
+.back_button {
   display: flex;
   justify-content: center;
 }
 
-.backButton button {
+.back_button button {
   margin-top: 4rem;
   font-family: Pretendard;
   background-color: var(--blue);

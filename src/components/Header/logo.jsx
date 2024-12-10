@@ -36,12 +36,12 @@ function Logo() {
     <div className={styles.logo}>
       {!isMobile && (
         <img
-          className={styles["header-bar img"]}
+          className={styles.header_bar_img}
           src={logoImg}
           alt="판다마켓로고"
         />
       )}
-      <h1 className={styles["logo-title"]}>
+      <h1 className={styles.logo_title}>
         <Link to="/">판다마켓</Link>
       </h1>
       <div className={styles.menu}>
@@ -49,8 +49,8 @@ function Logo() {
           to="/board"
           className={
             isItemsPage || isAddItemPage || isMainPage || isItemsDetailPage
-              ? styles["menuText-default"]
-              : styles["menuText-focus"]
+              ? styles.menuText_default
+              : styles.menuText_focus
           }
         >
           자유게시판
@@ -59,8 +59,8 @@ function Logo() {
           to="/items"
           className={
             isBoardPage || isMainPage || isItemsDetailPage
-              ? styles["menuText-default"]
-              : styles["menuText-focus"]
+              ? styles.menuText_default
+              : styles.menuText_focus
           }
         >
           중고마켓

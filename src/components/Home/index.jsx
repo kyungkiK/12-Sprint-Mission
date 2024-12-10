@@ -6,7 +6,7 @@ function Home() {
     <div>
       <Header />
       <section>
-        <div className={styles["home-body"]}>
+        <div className={styles.home_body}>
           <h1>준비중</h1>
         </div>
       </section>

@@ -31,7 +31,7 @@ section {
 }
 
 /* 상품 등록 전체 스타일 */
-.add-items {
+.add_items {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -39,24 +39,24 @@ section {
   min-width: 1200px;
 }
 
-.add-items-form {
+.add_items_form {
   display: flex;
   flex-direction: column;
   gap: 32px;
   width: 100%;
 }
 
-.product-img,
-.product-title,
-.product-info,
-.sale-cost,
+.product_img,
+.product_title,
+.product_info,
+.sale_cost,
 .tag {
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
 
-.product-add {
+.product_add {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -65,17 +65,17 @@ section {
   width: 100%;
 }
 
-.product-img {
+.product_img {
   display: flex;
   flex-direction: column;
 }
 
-.add-items h2 {
+.add_items h2 {
   margin: 0;
   font-size: 18px;
 }
 
-.add-items input {
+.add_items input {
   box-sizing: border-box;
   font-family: Pretendard;
   width: 100%;
@@ -87,7 +87,7 @@ section {
   color: var(--gray400);
 }
 
-.add-items textarea {
+.add_items textarea {
   font-family: Pretendard;
   width: 100%;
   padding: 16px 24px;
@@ -102,19 +102,19 @@ section {
   box-sizing: border-box; /* 패딩 포함 크기 계산 */
 }
 
-.add-items textarea:focus {
+.add_items textarea:focus {
   outline: none;
   border-color: var(--blue);
   box-shadow: 0 0 0 2px rgba(54, 146, 255, 0.3);
 }
 
-.add-items input:focus {
+.add_items input:focus {
   outline: none;
   border-color: var(--blue);
   box-shadow: 0 0 0 2px rgba(54, 146, 255, 0.3);
 }
 
-.product-add button {
+.product_add button {
   padding: 10px 20px;
   background-color: var(--blue);
   color: white;
@@ -123,12 +123,12 @@ section {
   cursor: pointer;
 }
 
-.product-add button:hover {
+.product_add button:hover {
   background-color: #2873cc;
 }
 
 /* 상품 이미지 등록 */
-.image-container {
+.image_container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -138,42 +138,42 @@ section {
   border-radius: 4px;
 }
 
-.upload-label {
+.upload_label {
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
 }
 
-.file-input {
+.file_input {
   display: none;
 }
 
-.upload-placeholder {
+.upload_placeholder {
   color: var(--gray400);
   font-size: 16px;
 }
 
-.upload-placeholder-plus {
+.upload_placeholder_plus {
   color: var(--gray400);
   font-size: 68px;
   text-align: center;
 }
 
-.image-preview {
+.image_preview {
   position: relative;
   width: 282px;
   height: 282px;
 }
 
-.uploaded-image {
+.uploaded_image {
   width: 100%;
   height: 100%;
   object-fit: cover;
   border-radius: 4px;
 }
 
-.delete-img-btn {
+.delete_img_btn {
   position: absolute;
   top: 8px;
   right: 8px;
@@ -190,7 +190,7 @@ section {
 }
 
 /* 태그 */
-.tag-item {
+.tag_item {
   margin: 5px;
   padding: 5px 10px;
   background-color: #f0f0f0;
@@ -200,7 +200,7 @@ section {
   align-items: center;
 }
 
-.delete-tag-btn {
+.delete_tag_btn {
   background: var(--gray400);
   border: none;
   border-radius: 9999px;

@@ -16,11 +16,11 @@ function AllProducts() {
   // 화면 크기 기반으로 페이지 크기 결정 함수
   function getPageSize(width) {
     if (width <= 767) {
-      return 4; // 화면 너비가 1200px 이상이면 한 페이지에 10개
+      return 4; // 화면 너비가 768px 미만이면 한 페이지에 4개
     } else if (width <= 1199) {
       return 6; // 화면 너비가 768px 이상이면 한 페이지에 6개
     } else {
-      return 10; // 화면 너비가 768px 미만이면 한 페이지에 4개
+      return 10; // 화면 너비가 1200px 이상이면 한 페이지에 10개
     }
   }
 
@@ -60,7 +60,7 @@ function AllProducts() {
   }, [currentPage, pageSize, orderBy, keyword]); // keyword가 변경될 때마다 상품 데이터 가져오기
 
   return (
-    <div className={styles["all-Container"]}>
+    <div className={styles.all_Container}>
       <NavBar
         orderBy={orderBy}
         setOrderBy={setOrderBy}

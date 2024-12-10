@@ -6,19 +6,16 @@ import { Link } from "react-router-dom";
 
 function ProductList({ products }) {
   return (
-    <ul className={styles["all-list"]}>
+    <ul className={styles.all_list}>
       {/* 상품 목록이 있을 경우, 상품 정보를 렌더링 */}
       {products.length > 0 ? (
         products.map((product) => (
-          <li key={product.id} className={styles["item-card"]}>
-            <Link
-              to={`/items/${product.id}`}
-              className={styles["product-link"]}
-            >
-              <div className={styles["product-image-box"]}>
+          <li key={product.id} className={styles.item_card}>
+            <Link to={`/items/${product.id}`} className={styles.product_link}>
+              <div className={styles.product_image_box}>
                 {/* 상품 이미지 */}
                 <img
-                  className={styles["product-image"]}
+                  className={styles.product_image}
                   src={
                     product.images && product.images.length > 0
                       ? product.images[0]
@@ -28,18 +25,18 @@ function ProductList({ products }) {
                 />
               </div>
               {/* 상품 이름 */}
-              <h3 className={styles["product-name"]}>{product.name}</h3>
+              <h3 className={styles.product_name}>{product.name}</h3>
               {/* 상품 가격 */}
-              <p className={styles["product-price"]}>{product.price}원</p>
-              <div className={styles["heart-line"]}>
+              <p className={styles.product_price}>{product.price}원</p>
+              <div className={styles.heart_line}>
                 {/* 좋아요 아이콘 */}
                 <img
-                  className={styles["heart-image"]}
+                  className={styles.heart_image}
                   src={heartIcon}
                   alt="좋아요 하트 기호"
                 />
                 {/* 좋아요 개수 */}
-                <span className={styles["heart-num"]}>
+                <span className={styles.heart_num}>
                   {product.favoriteCount}
                 </span>
               </div>

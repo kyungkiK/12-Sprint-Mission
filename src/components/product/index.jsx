@@ -119,12 +119,12 @@ function ProductDetail() {
       <section>
         <div className={styles.container}>
           <div className={styles.detail_container}>
-            <div className={styles.imageSection}>
+            <div className={styles.image_section}>
               {product.images.map((img, index) => (
                 <img key={index} src={img} alt={`상품 이미지 ${index + 1}`} />
               ))}
             </div>
-            <div className={styles.detailsSection}>
+            <div className={styles.details_section}>
               <h1 className={styles.product_name}>{product.name}</h1>
               <span className={styles.price}>{product.price}원</span>
               <hr></hr>
@@ -140,11 +140,13 @@ function ProductDetail() {
                   </span>
                 ))}
               </div>
-              <p className={styles.favoriteCount}>❤️ {product.favoriteCount}</p>
+              <p className={styles.favorite_count}>
+                ❤️ {product.favoriteCount}
+              </p>
             </div>
           </div>
           <hr></hr>
-          <div className={styles.commentSection}>
+          <div className={styles.comment_section}>
             <h2 className={styles.do_comment}>문의하기</h2>
             <textarea
               value={newComment}
@@ -153,14 +155,14 @@ function ProductDetail() {
             />
             <button
               onClick={handleCommentSubmit}
-              className={`${styles.submitButton} ${
+              className={`${styles.submit_button} ${
                 isCommentValid ? styles.active : ""
               }`}
               disabled={!isCommentValid}
             >
               등록
             </button>
-            <div className={styles.commentList}>
+            <div className={styles.comment_list}>
               {comments.map((comment, index) => (
                 <div key={index} className={styles.comment}>
                   <img
@@ -179,10 +181,10 @@ function ProductDetail() {
               ))}
             </div>
           </div>
-          <div className={styles.backButton}>
+          <div className={styles.back_button}>
             <button
               onClick={() => navigate("/items")}
-              className={styles.backButton}
+              className={styles.back_button}
             >
               목록으로 돌아가기
             </button>
