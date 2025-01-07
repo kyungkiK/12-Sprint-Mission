@@ -6,22 +6,28 @@ import { Link } from "react-router-dom";
 import { Product } from "../../types"; // Product 타입 임포트
 import React from "react";
 
+const PAGE_SIZES = {
+  small: { max: 767, size: 1 },
+  medium: { max: 1199, size: 2 },
+  large: { size: 4 }, // max가 없으므로 이 조건은 기본값으로 작동
+};
+
+// 페이지 크기 계산 함수의 인수 타입
+function getPageSize(width: number): number {
+  if (width <= PAGE_SIZES.small.max) {
+    return PAGE_SIZES.small.size;
+  } else if (width <= PAGE_SIZES.medium.max) {
+    return PAGE_SIZES.medium.size;
+  } else {
+    return PAGE_SIZES.large.size;
+  }
+}
+
 function Best() {
   const [products, setProducts] = useState<Product[]>([]); // 상품 데이터 상태 (Product[] 타입)
   const [pageSize, setPageSize] = useState<number>(
     getPageSize(window.innerWidth)
   ); // 페이지 크기 상태
-
-  // 화면 크기 기반으로 페이지 크기 결정 함수
-  function getPageSize(width: number): number {
-    if (width <= 767) {
-      return 1; // 화면 너비가 768px 미만이면 한 페이지에 1개
-    } else if (width <= 1199) {
-      return 2; // 화면 너비가 768px 이상이면 한 페이지에 2개
-    } else {
-      return 4; // 화면 너비가 1200px 이상이면 한 페이지에 4개
-    }
-  }
 
   // 화면 크기 변경 시 페이지 크기 재조정 (반응형 디자인 처리)
   useEffect(() => {

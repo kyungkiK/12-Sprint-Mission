@@ -20,16 +20,26 @@ interface ProductResponse {
   totalCount: number;
 }
 
+const PAGE_SIZES = {
+  small: { max: 767, size: 4 },
+  medium: { max: 1199, size: 6 },
+  large: { size: 10 }, // max가 없으므로 이 조건은 기본값으로 작동
+};
+
 // 페이지 크기 계산 함수의 인수 타입
 function getPageSize(width: number): number {
-  if (width <= 767) {
-    return 4; // 화면 너비가 768px 미만이면 한 페이지에 4개
-  } else if (width <= 1199) {
-    return 6; // 화면 너비가 768px 이상이면 한 페이지에 6개
+  if (width <= PAGE_SIZES.small.max) {
+    return PAGE_SIZES.small.size;
+  } else if (width <= PAGE_SIZES.medium.max) {
+    return PAGE_SIZES.medium.size;
   } else {
-    return 10; // 화면 너비가 1200px 이상이면 한 페이지에 10개
+    return PAGE_SIZES.large.size;
   }
 }
+
+// 상수를 정의하고 타입 생성
+const SORT_CATEGORIES = ["recent", "name"] as const;
+type SortCategory = (typeof SORT_CATEGORIES)[number];
 
 function AllProducts() {
   const [products, setProducts] = useState<Product[]>([]); // 상품 데이터 상태
@@ -37,7 +47,7 @@ function AllProducts() {
     getPageSize(window.innerWidth)
   ); // 페이지 크기 상태
   const [currentPage, setCurrentPage] = useState<number>(1); // 현재 페이지 상태
-  const [orderBy, setOrderBy] = useState<string>("recent"); // 정렬 기준 (최신순)
+  const [orderBy, setOrderBy] = useState<SortCategory>("recent"); // 정렬 기준 (최신순)
   const [totalItems, setTotalItems] = useState<number>(0); // 전체 상품 개수 상태
   const [keyword, setKeyword] = useState<string>(""); // 검색어 상태
 

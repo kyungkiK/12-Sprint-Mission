@@ -9,6 +9,8 @@ interface PaginationProps {
   onPageChange: (page: number) => void; // 페이지 변경 시 호출되는 함수
 }
 
+const pageRange = 5; // 한 번에 보여줄 페이지 버튼 개수
+
 function Pagination({
   currentPage,
   totalItems,
@@ -16,7 +18,6 @@ function Pagination({
   onPageChange,
 }: PaginationProps) {
   const totalPages = Math.ceil(totalItems / itemsPerPage); // 전체 페이지 수 계산
-  const pageRange = 5; // 한 번에 보여줄 페이지 버튼 개수
 
   // 페이지 범위 계산
   const [startPage, setStartPage] = useState<number>(1);
