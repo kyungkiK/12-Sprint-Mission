@@ -1,19 +1,21 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "lib": ["dom", "esnext"],
-    "jsx": "react-jsx",
-    "allowJs": true,
-    "checkJs": false,
-    "skipLibCheck": true,
-    "strict": true,
-    "esModuleInterop": true,
-    "resolveJsonModule": true,
-    "moduleResolution": "node",
-    "forceConsistentCasingInFileNames": true,
+    "target": "es5", // ES5로 트랜스파일
+    "lib": ["dom", "esnext"], // 사용 가능한 라이브러리
+    "jsx": "react-jsx", // React 17+ JSX 변환
+    "allowJs": true, // JS 파일 허용
+    "checkJs": false, // JS 파일 타입 체크 비활성화
+    "skipLibCheck": true, // 라이브러리 타입 검사 건너뜀
+    "strict": true, // 엄격한 타입 검사
+    "esModuleInterop": true, // CommonJS 및 ES 모듈 간 호환성
+    "resolveJsonModule": true, // JSON 파일 가져오기 허용
+    "moduleResolution": "node", // 모듈 해석 방식
+    "forceConsistentCasingInFileNames": true, // 대소문자 일관성 강제
+    "baseUrl": "src", // 경로 기본값 설정
     "paths": {
-      "*": ["src/types/*"]
+      "@assets/*": ["src/assets/*"], // 사용자 정의 경로 별칭
+      "*": ["src/types/*"] // 타입 정의 기본 경로
     }
   },
-  "include": ["src/**/*", "src/images.d.ts"]
+  "include": ["src/**/*", "src/global.d.ts"] // 포함 파일/디렉토리 지정
 }

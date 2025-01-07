@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { getProducts } from "../../api.ts";
-import NavBar from "./navBar.tsx";
-import ProductList from "./products.tsx";
-import Pagination from "./pagination.tsx";
+import { getProducts } from "../../api";
+import NavBar from "./navBar";
+import ProductList from "./products";
+import Pagination from "./pagination";
 import styles from "./allProduct.module.css";
 
 // Product 타입 정의
@@ -38,7 +38,7 @@ function getPageSize(width: number): number {
 }
 
 // 상수를 정의하고 타입 생성
-const SORT_CATEGORIES = ["recent", "name"] as const;
+const SORT_CATEGORIES = ["recent", "favorite"] as const;
 type SortCategory = (typeof SORT_CATEGORIES)[number];
 
 function AllProducts() {
@@ -78,8 +78,10 @@ function AllProducts() {
         setProducts(result.list); // 상품 목록 업데이트
         setTotalItems(result.totalCount); // 전체 상품 개수 업데이트
       } catch (error) {
-        console.error("데이터 로드 중 오류 발생:", error.message);
-        setProducts([]); // 오류 발생 시 빈 배열로 설정
+        if (error instanceof Error) {
+          console.error("데이터 로드 중 오류 발생:", error.message);
+          setProducts([]); // 오류 발생 시 빈 배열로 설정
+        }
       }
     };
 

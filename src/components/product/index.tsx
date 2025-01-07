@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { getProductComments, getProductDetails } from "../../api.ts";
+import { getProductComments, getProductDetails } from "../../api";
 import styles from "./product.module.css";
-import Header from "../Header/index.tsx";
+import Header from "../Header/index";
 import { Product, Comment } from "../../types"; // 타입 임포트
-import { formatDate } from "../../utils/formatDate.ts"; // formatDate 함수 임포트
+import { formatDate } from "../../utils/formatDate"; // formatDate 함수 임포트
 
 const ProductDetail: React.FC = () => {
   const { productId } = useParams<{ productId: string }>();

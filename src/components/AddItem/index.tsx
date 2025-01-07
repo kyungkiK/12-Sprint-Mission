@@ -1,5 +1,5 @@
 import React, { ChangeEvent, useState } from "react";
-import Header from "../Header/index.tsx";
+import Header from "../Header/index";
 import styles from "./addItem.module.css";
 
 function AddItems() {

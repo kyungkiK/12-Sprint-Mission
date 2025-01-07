@@ -5,8 +5,8 @@ import { Link } from "react-router-dom"; // Link import
 
 // Props 타입 정의
 interface NavBarProps {
-  orderBy: string;
-  setOrderBy: (order: string) => void;
+  orderBy: "recent" | "favorite"; // 'recent' 또는 'favorite'만 가능
+  setOrderBy: (order: "recent" | "favorite") => void; // setOrderBy는 'recent' 또는 'favorite'만 받을 수 있음
   keyword: string;
   setKeyword: (keyword: string) => void;
 }

@@ -1,6 +1,6 @@
 import styles from "./best.module.css";
 import heartIcon from "../../assets/img/logo/heartIcon.svg";
-import { getProducts } from "../../api.ts";
+import { getProducts } from "../../api";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Product } from "../../types"; // Product 타입 임포트
@@ -54,8 +54,10 @@ function Best() {
         });
         setProducts(result.list); // 상품 데이터 업데이트
       } catch (error) {
-        console.error("데이터 로드 중 오류 발생:", error.message);
-        setProducts([]); // 오류 발생 시 빈 배열로 설정
+        if (error instanceof Error) {
+          console.error("데이터 로드 중 오류 발생:", error.message);
+          setProducts([]); // 오류 발생 시 빈 배열로 설정
+        }
       }
     };
 

@@ -1,5 +1,5 @@
 import React from "react";
-import Header from "../Header/index.tsx";
+import Header from "../Header/index";
 import styles from "./styles.module.css";
 
 const Board: React.FC = () => {
