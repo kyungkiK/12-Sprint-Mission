@@ -1,8 +1,9 @@
 import React from "react";
-import heartIcon from "../../assets/img/logo/heartIcon.svg";
+import heartIcon from "@/public/assets/img/logo/heartIcon.svg";
 import styles from "./allProduct.module.css";
-import EMPTY_IMAGE_URL from "../../assets/img/landing/Img_home_02.png";
-import { Link } from "react-router-dom";
+import EMPTY_IMAGE_URL from "@/public/assets/img/landing/Img_home_02.png";
+import Link from "next/link";
+import Image from "next/image"; // next/image 사용
 
 // Product 타입 정의
 interface Product {
@@ -25,17 +26,20 @@ function ProductList({ products }: ProductListProps) {
       {products.length > 0 ? (
         products.map((product) => (
           <li key={product.id} className={styles.item_card}>
-            <Link to={`/items/${product.id}`} className={styles.product_link}>
+            <Link href={`/items/${product.id}`} className={styles.product_link}>
               <div className={styles.product_image_box}>
                 {/* 상품 이미지 */}
-                <img
+                <Image
                   className={styles.product_image}
                   src={
                     product.images && product.images.length > 0
                       ? product.images[0]
                       : EMPTY_IMAGE_URL
                   }
+                  width={500}
+                  height={500}
                   alt={product.name || "기본 이미지"}
+                  unoptimized // 최적화 비활성화
                 />
               </div>
               {/* 상품 이름 */}
@@ -44,7 +48,7 @@ function ProductList({ products }: ProductListProps) {
               <p className={styles.product_price}>{product.price}원</p>
               <div className={styles.heart_line}>
                 {/* 좋아요 아이콘 */}
-                <img
+                <Image
                   className={styles.heart_image}
                   src={heartIcon}
                   alt="좋아요 하트 기호"

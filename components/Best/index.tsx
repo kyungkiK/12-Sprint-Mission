@@ -1,68 +1,70 @@
 import styles from "./best.module.css";
-import heartIcon from "../../assets/img/logo/heartIcon.svg";
-import { getProducts } from "../../api";
+import heartIcon from "@/public/assets/img/logo/heartIcon.svg";
+import { getProducts } from "@/api/api";
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { Product } from "../../types"; // Product 타입 임포트
+import Link from "next/link";
+import Image from "next/image"; // next/image 사용
+import { Product } from "@/types";
 import React from "react";
+import windowView from "@/hooks/windowView"; // debounce 적용된 windowView 훅 사용
 
 const PAGE_SIZES = {
-  small: { max: 767, size: 1 },
-  medium: { max: 1199, size: 2 },
-  large: { size: 4 }, // max가 없으므로 이 조건은 기본값으로 작동
+  mobile: { max: 767, size: 1 },
+  tablet: { max: 1199, size: 2 },
+  desktop: { size: 4 }, // 화면 크기에 따라 상품 개수를 결정
 };
 
-// 페이지 크기 계산 함수의 인수 타입
-function getPageSize(width: number): number {
-  if (width <= PAGE_SIZES.small.max) {
-    return PAGE_SIZES.small.size;
-  } else if (width <= PAGE_SIZES.medium.max) {
-    return PAGE_SIZES.medium.size;
+// 페이지 크기 계산 함수
+const getPageSize = (width: number) => {
+  if (width <= PAGE_SIZES.mobile.max) {
+    return PAGE_SIZES.mobile.size;
+  } else if (width <= PAGE_SIZES.tablet.max) {
+    return PAGE_SIZES.tablet.size;
   } else {
-    return PAGE_SIZES.large.size;
+    return PAGE_SIZES.desktop.size;
   }
-}
+};
 
-function Best() {
-  const [products, setProducts] = useState<Product[]>([]); // 상품 데이터 상태 (Product[] 타입)
-  const [pageSize, setPageSize] = useState<number>(
-    getPageSize(window.innerWidth)
-  ); // 페이지 크기 상태
+const Best: React.FC = () => {
+  const [products, setProducts] = useState<Product[]>([]);
+  const [pageSize, setPageSize] = useState<number>(1); // 기본값을 1로 설정 (모바일에서 1개)
+  const [isError, setIsError] = useState(false);
 
-  // 화면 크기 변경 시 페이지 크기 재조정 (반응형 디자인 처리)
+  const windowWidth = windowView(); // debounce 적용된 windowWidth 값 받아오기
+
+  // 화면 크기 변화에 따라 페이지 크기 설정
   useEffect(() => {
-    const handleResize = () => {
-      setPageSize(getPageSize(window.innerWidth)); // 새로운 화면 크기 반영
-    };
+    if (windowWidth === 0) return; // windowWidth가 0이면 return
 
-    window.addEventListener("resize", handleResize); // 화면 크기 변화 이벤트 리스너 추가
+    const newPageSize = getPageSize(windowWidth); // 화면 크기에 맞는 페이지 크기 계산
+    setPageSize(newPageSize); // 페이지 크기 업데이트
+  }, [windowWidth]); // windowWidth가 변경될 때마다 실행
 
-    return () => {
-      window.removeEventListener("resize", handleResize); // 컴포넌트 언마운트 시 이벤트 리스너 제거
-    };
-  }, []);
-
-  // 상품 데이터를 API에서 가져오는 함수
+  // pageSize가 변경될 때마다 상품 데이터를 다시 불러옴
   useEffect(() => {
-    const fetchProducts = async () => {
+    const fetchBestProducts = async () => {
       try {
         const result = await getProducts({
-          page: 1,
-          pageSize: pageSize, // 페이지 크기 (한 페이지당 표시할 상품 개수)
-          orderBy: "favorite", // 정렬 기준 (인기 순)
-          keyword: "",
+          page: 1, // 페이지는 1로 고정
+          pageSize, // 화면 크기에 맞춘 pageSize 전달
+          orderBy: "favorite", // 인기 순으로 정렬
         });
-        setProducts(result.list); // 상품 데이터 업데이트
+        setProducts(result.list); // 상품 데이터 설정
       } catch (error) {
         if (error instanceof Error) {
           console.error("데이터 로드 중 오류 발생:", error.message);
+          setIsError(true); // 오류 발생 시 상태 변경
           setProducts([]); // 오류 발생 시 빈 배열로 설정
         }
       }
     };
 
-    fetchProducts();
-  }, [pageSize]); // pageSize가 변경될 때마다 상품 데이터를 가져옴
+    fetchBestProducts(); // 페이지 크기 변경 후 상품 데이터 다시 가져오기
+  }, [pageSize]); // pageSize가 변경될 때마다 데이터를 다시 가져옴
+
+  if (isError) {
+    return <div>상품을 불러오는 데 문제가 발생했습니다.</div>;
+  }
 
   return (
     <div className={styles.best_Container}>
@@ -71,38 +73,42 @@ function Best() {
         {products.length > 0 ? (
           products.map((product) => (
             <li key={product.id} className={styles.best_card}>
-              <Link to={`/items/${product.id}`} className={styles.product_link}>
-                {product.images.length > 0 && (
-                  <div className={styles.product_image_box}>
-                    <img
-                      className={styles.product_image}
-                      src={product.images[0]}
-                      alt={product.name}
-                    />
-                  </div>
-                )}
+              <Link href={`/items/${product.id}`} passHref>
+                <div className={styles.product_link}>
+                  {product.images.length > 0 && (
+                    <div className={styles.product_image_box}>
+                      <img
+                        className={styles.product_image}
+                        src={product.images[0]}
+                        alt={product.name}
+                      />
+                    </div>
+                  )}
 
-                <h3 className={styles.product_name}>{product.name}</h3>
-                <p className={styles.product_price}>{product.price}원</p>
-                <div className={styles.heart_line}>
-                  <img
-                    className={styles.heart_image}
-                    src={heartIcon}
-                    alt="좋아요 하트 기호"
-                  />
-                  <span className={styles.heart_num}>
-                    {product.favoriteCount}
-                  </span>
+                  <h3 className={styles.product_name}>{product.name}</h3>
+                  <p className={styles.product_price}>{product.price}원</p>
+                  <div className={styles.heart_line}>
+                    <Image
+                      className={styles.heart_image}
+                      src={heartIcon}
+                      alt="좋아요 하트 기호"
+                      width={20} // 하트 아이콘 크기 지정
+                      height={20}
+                    />
+                    <span className={styles.heart_num}>
+                      {product.favoriteCount}
+                    </span>
+                  </div>
                 </div>
               </Link>
             </li>
           ))
         ) : (
-          <p>No Products</p> // 상품이 없을 경우
+          <p>상품이 없습니다.</p> // 상품이 없을 경우
         )}
       </ul>
     </div>
   );
-}
+};
 
 export default Best;

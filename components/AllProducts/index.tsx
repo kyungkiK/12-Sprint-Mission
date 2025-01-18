@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { getProducts } from "../../api";
+import { getProducts } from "@/api/api";
 import NavBar from "./navBar";
 import ProductList from "./products";
 import Pagination from "./pagination";
 import styles from "./allProduct.module.css";
+import windowView from "@/hooks/windowView"; // 커스텀 훅 임포트
 
 // Product 타입 정의
 interface Product {
@@ -20,13 +21,14 @@ interface ProductResponse {
   totalCount: number;
 }
 
+// 페이지 크기 설정을 위한 상수
 const PAGE_SIZES = {
   small: { max: 767, size: 4 },
   medium: { max: 1199, size: 6 },
   large: { size: 10 }, // max가 없으므로 이 조건은 기본값으로 작동
 };
 
-// 페이지 크기 계산 함수의 인수 타입
+// 페이지 크기 계산 함수
 function getPageSize(width: number): number {
   if (width <= PAGE_SIZES.small.max) {
     return PAGE_SIZES.small.size;
@@ -37,56 +39,50 @@ function getPageSize(width: number): number {
   }
 }
 
-// 상수를 정의하고 타입 생성
-const SORT_CATEGORIES = ["recent", "favorite"] as const;
-type SortCategory = (typeof SORT_CATEGORIES)[number];
-
-function AllProducts() {
+const AllProducts = () => {
   const [products, setProducts] = useState<Product[]>([]); // 상품 데이터 상태
-  const [pageSize, setPageSize] = useState<number>(
-    getPageSize(window.innerWidth)
-  ); // 페이지 크기 상태
+  const [pageSize, setPageSize] = useState<number>(4); // 초기 페이지 크기 설정 (10개로 설정)
   const [currentPage, setCurrentPage] = useState<number>(1); // 현재 페이지 상태
-  const [orderBy, setOrderBy] = useState<SortCategory>("recent"); // 정렬 기준 (최신순)
+  const [orderBy, setOrderBy] = useState<"recent" | "favorite">("recent"); // 정렬 기준
   const [totalItems, setTotalItems] = useState<number>(0); // 전체 상품 개수 상태
   const [keyword, setKeyword] = useState<string>(""); // 검색어 상태
+  const [isLoading, setIsLoading] = useState<boolean>(false); // 로딩 상태
 
-  // 화면 크기 변경 시 페이지 크기 재조정 (반응형 디자인 처리)
+  const windowWidth = windowView(); // 화면 크기 추적
+
+  // 화면 크기 변경에 따라 페이지 크기 조정
   useEffect(() => {
-    const handleResize = () => {
-      setPageSize(getPageSize(window.innerWidth)); // 새로운 화면 크기 반영
-    };
+    if (windowWidth === 0) return; // windowWidth가 0이면 return
 
-    window.addEventListener("resize", handleResize); // 화면 크기 변화 이벤트 리스너 추가
+    const newPageSize = getPageSize(windowWidth); // 화면 크기 기반 페이지 크기 계산
+    setPageSize(newPageSize); // 페이지 크기 업데이트
+  }, [windowWidth]); // windowWidth가 변경될 때마다 실행
 
-    return () => {
-      window.removeEventListener("resize", handleResize); // 컴포넌트 언마운트 시 이벤트 리스너 제거
-    };
-  }, []);
-
-  // 상품 데이터를 API에서 가져오는 함수
+  // 상품 데이터 가져오는 함수
   useEffect(() => {
     const fetchProducts = async () => {
+      setIsLoading(true); // 로딩 시작
       try {
         const result: ProductResponse = await getProducts({
           page: currentPage, // 현재 페이지
-          pageSize, // 페이지 크기 (한 페이지당 표시할 상품 개수)
-          orderBy, // 정렬 기준 (최신순 등)
+          pageSize, // 페이지 크기
+          orderBy, // 정렬 기준
           keyword, // 검색어
-          totalItems, // 총 아이템 개수 (API 요청 시 사용)
         });
-        setProducts(result.list); // 상품 목록 업데이트
-        setTotalItems(result.totalCount); // 전체 상품 개수 업데이트
+        setProducts(result.list); // 상품 목록 설정
+        setTotalItems(result.totalCount); // 전체 상품 개수 설정
       } catch (error) {
         if (error instanceof Error) {
           console.error("데이터 로드 중 오류 발생:", error.message);
           setProducts([]); // 오류 발생 시 빈 배열로 설정
         }
+      } finally {
+        setIsLoading(false); // 로딩 완료
       }
     };
 
     fetchProducts();
-  }, [currentPage, pageSize, orderBy, keyword]); // keyword가 변경될 때마다 상품 데이터 가져오기
+  }, [currentPage, pageSize, orderBy, keyword]); // 의존성 배열
 
   return (
     <div className={styles.all_Container}>
@@ -97,14 +93,18 @@ function AllProducts() {
         setKeyword={setKeyword}
       />
       <ProductList products={products} />
-      <Pagination
-        currentPage={currentPage}
-        totalItems={totalItems}
-        itemsPerPage={pageSize}
-        onPageChange={setCurrentPage} // 페이지 변경 시 상태 업데이트
-      />
+      {isLoading ? (
+        <div>Loading...</div>
+      ) : (
+        <Pagination
+          currentPage={currentPage}
+          totalItems={totalItems}
+          itemsPerPage={pageSize}
+          onPageChange={setCurrentPage} // 페이지 변경 시 상태 업데이트
+        />
+      )}
     </div>
   );
-}
+};
 
 export default AllProducts;

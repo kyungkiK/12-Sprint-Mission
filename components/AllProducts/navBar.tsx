@@ -1,7 +1,8 @@
 import React, { useState, ChangeEvent } from "react";
-import searchIcon from "../../assets/img/logo/searchIcon.svg";
+import searchIcon from "@/public/assets/img/logo/searchIcon.svg";
 import styles from "./allProduct.module.css";
-import { Link } from "react-router-dom"; // Link import
+import Link from "next/link";
+import Image from "next/image";
 
 // Props 타입 정의
 interface NavBarProps {
@@ -34,7 +35,11 @@ function NavBar({ orderBy, setOrderBy, keyword, setKeyword }: NavBarProps) {
       <h2 className={styles.title}>전체 상품</h2>
 
       {/* 검색 아이콘 */}
-      <img src={searchIcon} className={styles.search_icon} alt="search-icon" />
+      <Image
+        src={searchIcon}
+        className={styles.search_icon}
+        alt="search-icon"
+      />
       {/* 검색 input */}
       <input
         className={styles.search_input}
@@ -44,7 +49,7 @@ function NavBar({ orderBy, setOrderBy, keyword, setKeyword }: NavBarProps) {
         placeholder="검색할 상품을 입력해주세요"
       ></input>
       {/* 상품 등록 버튼 */}
-      <Link to="/additem">
+      <Link href="/additem">
         <button className={styles.register_button}>상품 등록하기</button>
       </Link>
       {/* 드롭다운 버튼 */}

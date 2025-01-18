@@ -1,6 +1,6 @@
 @font-face {
   font-family: "ROKAF Sans";
-  src: url(/src/assets/fonts/ROKAF_SANS_MEDIUM.TTF) format("truetype");
+  src: url(../public/assets/fonts/ROKAF_SANS_MEDIUM.TTF) format("truetype");
 }
 
 :root {
@@ -24,6 +24,7 @@
     BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI",
     "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji",
     "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  text-decoration: none;
 }
 
 header {

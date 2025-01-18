@@ -1,8 +1,8 @@
-section {
+.section {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 80vh;
+  height: 110vh;
   padding-top: 16rem;
   padding-bottom: 16rem;
 }
@@ -47,7 +47,7 @@ section {
   font-size: 40px;
 }
 
-hr {
+.hr {
   width: 100%;
   border: 1px solid var(--gray200);
 }

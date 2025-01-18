@@ -4,6 +4,7 @@
   flex-direction: column;
   align-content: center;
   flex-wrap: wrap;
+  gap: 0.625rem;
 }
 
 .title {
