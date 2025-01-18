@@ -4,6 +4,7 @@ import { getProductComments, getProductDetails } from "@/api/api";
 import styles from "@/components/product/product.module.css";
 import { Product, Comment } from "@/types"; // 타입 임포트
 import { formatDate } from "@/utils/formatDate"; // formatDate 함수 임포트
+import Header from "@/components/Header";
 
 const ProductDetail: React.FC = () => {
   const router = useRouter(); // useRouter 훅을 통해 라우터 객체 접근
@@ -109,6 +110,7 @@ const ProductDetail: React.FC = () => {
 
   return (
     <div>
+      <Header />
       <div className={styles.section}>
         <div className={styles.container}>
           <div className={styles.detail_container}>

@@ -11,7 +11,7 @@ const Logo: React.FC = () => {
 
   // 각 경로에 있을 때의 스타일을 조건부로 적용
   const isItemsPage = router.pathname === "/items";
-  const isBoardPage = router.pathname === "/board";
+  const isBoardPage = router.pathname === "/boards";
   const isAddItemPage = router.pathname === "/additem";
   const isMainPage = router.pathname === "/";
   const isItemsDetailPage = router.pathname.startsWith("/items/");
@@ -50,7 +50,7 @@ const Logo: React.FC = () => {
       </h1>
       <div className={styles.menu}>
         <Link
-          href="/board"
+          href="/boards"
           className={
             isItemsPage || isAddItemPage || isMainPage || isItemsDetailPage
               ? styles.menuText_default
